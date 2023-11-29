@@ -1,20 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
+import { useState } from "react";
 
 export default function App() {
+  const [data, setData] = useState(null);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView>
+      {data == null ? (
+        <>
+          <Text>Rock / Paper / Scissors</Text>
+          <Button
+            title="rock"
+            onPress={() => {
+              setData("rock");
+            }}
+          ></Button>
+          <Button
+            title="paper"
+            onPress={() => {
+              setData("paper");
+            }}
+          ></Button>
+          <Button
+            title="scissors"
+            onPress={() => {
+              setData("scissors");
+            }}
+          ></Button>
+        </>
+      ) : (
+        <>
+          <Text>You picked {data}</Text>
+          <Button
+            title="reset"
+            onPress={() => {
+              setData(null);
+            }}
+          ></Button>
+        </>
+      )}
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
