@@ -3,39 +3,54 @@ import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
 import { useState } from "react";
 
 export default function App() {
-  const [data, setData] = useState(null);
+  const [playerChoice, setPlayerChoice] = useState(null);
+  const [computerChoice, setComputerChoice] = useState(null);
+
+  const makeMoves = (playerChoice) => {
+    setPlayerChoice(playerChoice);
+    setComputerChoice("rock");
+  };
 
   return (
-    <SafeAreaView>
-      {data == null ? (
+    <SafeAreaView
+      style={{
+        flex: 1,
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: "red",
+      }}
+    >
+      {playerChoice == null ? (
         <>
           <Text>Rock / Paper / Scissors</Text>
           <Button
             title="rock"
             onPress={() => {
-              setData("rock");
+              makeMoves("rock");
             }}
           ></Button>
           <Button
             title="paper"
             onPress={() => {
-              setData("paper");
+              makeMoves("paper");
             }}
           ></Button>
           <Button
             title="scissors"
             onPress={() => {
-              setData("scissors");
+              makeMoves("scissors");
             }}
           ></Button>
         </>
       ) : (
         <>
-          <Text>You picked {data}</Text>
+          <Text>You picked {playerChoice}</Text>
+          <Text>Computer picked {computerChoice}</Text>
           <Button
             title="reset"
             onPress={() => {
-              setData(null);
+              setPlayerChoice(null);
+              setComputerChoice(null);
             }}
           ></Button>
         </>
